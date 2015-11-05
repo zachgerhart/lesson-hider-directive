@@ -55,7 +55,9 @@ Unlike dependency injection used elsewhere in Angular these paramater names don'
 
 Remember that data is passed to directives through attributes on the element. So in our html lets add an attribute named `my-test` and give it a value of `Hello there!`. Just like this : `<lesson-hider my-test="Hello there!"></lesson-hider>`
 
-Now inside of your link method lets console log the three paramaters (scope, element, attributes)
+Now inside of your link method lets console log the three paramaters (scope, element, attributes) check out the console to see what we're getting. The scope will log out an object containing angular properties, the element will log out the actual DOM element itself, and you will be able to see that the attributes logs out your myTest attribute and value. You can also see that Angular has done it's magic in converting the snake-case in your html to camelCase.
+
+
 
 
 
