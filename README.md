@@ -105,6 +105,23 @@ In our lessonCtrl lets create a new property on the `$scope` and call it 'test',
 
 Now all we need to do to display our string is add it to the lessonHider template. So inside of lessonHider.html lets add `{{ lesson }}` and you should see a second 'Two way data binding!' show up on your page. The reason we use 'lesson' here instead of 'test' is because our directive can no longer talk to our controller, it only knows the values we give it, and we have passed `$scope.test` to our directives `lesson` attribute, so we can only access it by `lesson`.
 
+There is only one more step to demonstrate what I mean by two way data binding. Let's create an input box inside of our directive and give it an `ng-model` of `lesson`. Now by typing in the input box you can see that the changes you make effect both `$scope.test` AND `lesson`!
+
+## Step 5: Adding even more functionality!
+So now we know how to set up the basic layout of a directive, give it a template, isolate the scope, and pass it data! Pretty impressive, but we aren't done yet. Our directive still doesn't really DO much. So lets fix that now. First things first, lets wrap our directive (in our index.html) in a `<ul>` tag and add an `ng-repeat` to our directive, repeating over the lessons array in your lessonCtrl. Don't worry! ng-repeat will work on our directive just like it would on any other element. Next we will pass each lesson in the array to our `lesson` attribute on the directive.
+
+`index.html`:
+```
+<ul>
+	<lesson-hider ng-repeat="lesson in lessons" lesson="lesson"></lesson-hider>
+</ul>
+```
+
+`lessonHider.html`:
+```
+<li>{{ lesson }}</li>
+```
+
 
 
 
