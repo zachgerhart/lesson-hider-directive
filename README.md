@@ -129,7 +129,16 @@ What we are going to do now is add a controller to our directive. Simply add the
 
 Since we're injecting lessonService lets go add the function there we need. Create a method named `getSchedule` that simply returns a GET request to your schedule.json (You probably haven't done an $http request to one of your own files before, but it works just the same. `return $http.get('schedule.json');`).
 
-Because we have injected lessonService into our directive's controller we can now access that function in the same way we are used to in other controllers. Inside the function's .then method lets assign `response.data` to a new property on the $scope called `$scope.schedule`.
+Because we have injected lessonService into our directive's controller we can now access that function in the same way we are used to in other controllers. Inside the function's .then method lets assign `response.data` to a new property on the $scope called `$scope.schedule`. You can also console log the response to ensure you are getting the data back.
+
+## Step 6: Utilizing the link function.
+If you've forgotten along the way what our directive is going to be doing, here's a reminder: We are going to check whether a lesson is already in the schedule, and if it is, we will cross it out.
+
+Now we have all the data we need for basic functionality! Time to make use of the that data inside our link function. The link function in directives is primarily used when you need to manipulate the DOM, and it will feel a lot like jQuery because Angular is using a paired down version of jQuery called jqLite. So now we're going back to some basics.
+
+
+
+
 
 
 
