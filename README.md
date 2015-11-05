@@ -117,10 +117,19 @@ So now we know how to set up the basic layout of a directive, give it a template
 </ul>
 ```
 
+For formatting purposes we'll also want to add `<li>` tags to our lessonHider.html.
 `lessonHider.html`:
 ```
 <li>{{ lesson }}</li>
 ```
+
+Now when you reload the page you should see a list of all the different lessons from your lessons array, so we're ready to push on!
+
+What we are going to do now is add a controller to our directive. Simply add the key `controller:` to our directive's return object and give it the value of a function. This may seem a little strange, but we can treat this controller the same way as we do any other controller we are used to using, the only difference is that this controller can only apply to this directive. Knowing that this controller is the same as what we are used to working with, lets inject `$scope` and `lessonService` just like we're used to.
+
+Since we're injecting lessonService lets go add the function there we need. Create a method named `getSchedule` that simply returns a GET request to your schedule.json (You probably haven't done an $http request to one of your own files before, but it works just the same. `return $http.get('schedule.json');`).
+
+Because we have injected lessonService into our directive's controller we can now access that function in the same way we are used to in other controllers. Inside the function's .then method lets assign `response.data` to a new property on the $scope called `$scope.schedule`.
 
 
 
