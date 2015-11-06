@@ -9,6 +9,7 @@ All that is provided is the schedule.json and app.js, so lets start by laying ou
 - 'lessonService.js'
 - 'lessonHider.js'. 
 ​
+
 So lets start out by creating those files and setting up the necessary basics such as initializing the app and controller.
 ​
 ## Step 2: Starting your directive.
