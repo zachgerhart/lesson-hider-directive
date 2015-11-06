@@ -139,7 +139,7 @@ Inside of our link function we can now access our `getSchedule` value on our sco
 Your directive should now look something like this:
 ```javascript
 angular.module('directivePractice')
-.directive('lessonHider', function( $timeout ) {
+.directive('lessonHider', function() {
 	
 	return {
 		templateUrl: 'lessonHider.html',
@@ -173,7 +173,7 @@ What if the user wants to know what day of the schedule a lesson is active on? R
 Before adding more functionality, lets make sure we're up to speed, here is what your directive should look like now:
 ```javascript
 angular.module('directivePractice')
-.directive('lessonHider', function( $timeout ) {
+.directive('lessonHider', function() {
 	
 	return {
 		templateUrl: 'lessonHider.html',
@@ -203,6 +203,25 @@ angular.module('directivePractice')
 });
 ```
 
+First we will need to add a new property onto our scope object, lets call this property `dayAlert:`. We will be passing this value a function, so remember that we want to use the `'&'` instead of the `'='`. Now that we have that property on our scope, we need to give it a value, so lets go back to our lessonCtrl and write a new function named announceDay. This function will be nice and simple, it should take two parameters, lesson and day, and just alert `lesson + ' is active on ' + day + '.'`.
+
+Our next step is to pass this new function to our directive. Don't forget that angular will swap camelCase to snake-case in your html! The directive element inside your index.html should now look something like this: 
+```html
+<lesson-hider ng-repeat="lesson in lessons" lesson="lesson" day-alert="announceDay(lesson, day)"></lesson-hider>
+```
+
+Now that we have access to our new function inside of our directive we need to change a few things. First off, we will need to save a reference to the lesson's day on our scope. So inside our link function's if statement we will create a new property called `scope.lessonDay` and set it equal to the day in the schedule's `weekday` property. With this reference we are ready to make `dayAlert` available to our users.
+
+Inside our directive's template, lets add a button element and give that element an ng-click attribute with the value of `ng-click="dayAlert({ lesson: lesson, day: lessonDay })"`. This syntax is a little strange, but it is just a quirk of directives. We pass the function call a single object with key names that match the parameter names we gave `day-alert` in our html and then give those keys the values of the arguments we would like to pass to the function. In this case we want to pass our `scope.lesson` property as the first argument to `lesson` and our `scope.lessonDay` property as the second argument that will be passed to `day`.
+
+## Step 7: Next steps.
+Congratulations! You have written a new custom directive that utilizes the restrictions, a templateUrl, isolate scope, a controller, and a link function! Directives can be a lot to wrap your head around, so here are a few options to familiarize yourself further:
+
+	1. Right now our dayAlert function will alert that 'Lesson is active on undefined' if we select a lesson that is not in the schedule. Try to fix that.
+	2. Add a checkbox that toggles whether or not lessons in the schedule are crossed out or not.
+	3. Allow users to remove a lesson from the schedule and have your directive update when a lesson is removed from the schedule.
+
+Directives are an incredibly intricate and powerful piece of AngularJS, so keep practicing and searching out new use-cases for them. Once again, congratulations on your first fully fledged custom directive!
 
 
 
