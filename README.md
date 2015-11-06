@@ -129,17 +129,79 @@ What we are going to do now is add a controller to our directive. Simply add the
 
 Since we're injecting lessonService lets go add the function there we need. Create a method named `getSchedule` that simply returns a GET request to your schedule.json (You probably haven't done an $http request to one of your own files before, but it works just the same. `return $http.get('schedule.json');`).
 
-Because we have injected lessonService into our directive's controller we can now access that function in the same way we are used to in other controllers. Inside the function's .then method lets assign `response.data` to a new property on the $scope called `$scope.schedule`. You can also console log the response to ensure you are getting the data back.
+Because we have injected lessonService into our directive's controller we can now access that function in the same way we are used to in other controllers. Lets assign the return value of `lessonService.getSchedule()` to a new value called `$scope.getSchedule`. You may have noticed that we still haven't called a `.then` yet, we're almost there!
 
 ## Step 6: Utilizing the link function.
 If you've forgotten along the way what our directive is going to be doing, here's a reminder: We are going to check whether a lesson is already in the schedule, and if it is, we will cross it out.
 
+Inside of our link function we can now access our `getSchedule` value on our scope. Remember that `scope` inside our link function is referencing the entire scope of the directive, so our link function and controller can talk to each other. `scope.getSchedule` is the same value as `$scope.getSchedule`, you can even change the parameter name inside your link function to make it more clear. Because our `getSchedule` value is still a promise we can now use a `.then` and assign the return value to our scope. So lets set `getSchedule.then`'s return value to a property on the scope named `scope.schedule`.
+
+Your directive should now look something like this:
+```javascript
+angular.module('directivePractice')
+.directive('lessonHider', function( $timeout ) {
+	
+	return {
+		templateUrl: 'lessonHider.html',
+		restrict: 'E',
+		scope: {
+			lesson: '='
+		},
+		controller: function( $scope, lessonService ) {
+			$scope.getSchedule = lessonService.getSchedule();
+		},
+		link: function( scope, element, attributes ) {
+			scope.getSchedule.then(function( response ) {
+				scope.schedule = response.data;
+			});
+
+		}
+	}
+
+});
+```
+
 Now we have all the data we need for basic functionality! Time to make use of the that data inside our link function. The link function in directives is primarily used when you need to manipulate the DOM, and it will feel a lot like jQuery because Angular is using a paired down version of jQuery called jqLite. So now we're going back to some basics.
 
+First of all we will need to loop through our schedule array and check whether `scope.lesson` matches a lesson that is already scheduled. If we find the value then we need to do some basic jQuery to strike the list-item through. It is also good practice to tell your function to also `return;` if it finds the value, preventing your loop from continuing to run after you've found the lesson.
 
+Our directive now has functionality and is an example of a real world use case! But there's still more we can do!
 
+## Step 7: Passing a function to our directive.
+What if the user wants to know what day of the schedule a lesson is active on? Right now all they know is that some lessons are active somewhere in the schedule. Lets fix this!
 
+Before adding more functionality, lets make sure we're up to speed, here is what your directive should look like now:
+```javascript
+angular.module('directivePractice')
+.directive('lessonHider', function( $timeout ) {
+	
+	return {
+		templateUrl: 'lessonHider.html',
+		restrict: 'E',
+		scope: {
+			lesson: '='
+		},
+		controller: function( $scope, lessonService ) {
+			$scope.getSchedule = lessonService.getSchedule();
+		},
+		link: function( scope, element, attributes ) {
 
+			scope.getSchedule.then(function( response ) {
+				scope.schedule = response.data;
+
+				scope.schedule.forEach(function( scheduleDay ) {
+					if (scheduleDay.lesson === scope.lesson) {
+						element.css('text-decoration', 'line-through');
+						return;
+					}
+				});
+			});
+
+		}
+	}
+
+});
+```
 
 
 
