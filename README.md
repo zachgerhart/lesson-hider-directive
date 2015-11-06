@@ -214,7 +214,7 @@ Now that we have access to our new function inside of our directive we need to c
 
 Inside our directive's template, lets add a button element and give that element an ng-click attribute with the value of `ng-click="dayAlert({ lesson: lesson, day: lessonDay })"`. This syntax is a little strange, but it is just a quirk of directives. We pass the function call a single object with key names that match the parameter names we gave `day-alert` in our html and then give those keys the values of the arguments we would like to pass to the function. In this case we want to pass our `scope.lesson` property as the first argument to `lesson` and our `scope.lessonDay` property as the second argument that will be passed to `day`.
 
-## Step 7: Next steps.
+## Step 8: Next steps.
 Congratulations! You have written a new custom directive that utilizes the restrictions, a templateUrl, isolate scope, a controller, and a link function! Directives can be a lot to wrap your head around, so here are a few options to familiarize yourself further:
 
 	1. Right now our dayAlert function will alert that 'Lesson is active on undefined' if we select a lesson that is not in the schedule. Try to fix that.
