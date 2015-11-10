@@ -24,9 +24,9 @@ angular.module('directivePractice')
 });
 ```
 ​
-Starting out looking pretty familiar right? So let's test it and make sure it works! Start out by creating a new file named 'lessonHider.html' and adding some text. Once you have that done we can add a property called ```templateUrl: ``` to our directive's return object. Point the templateUrl to your newly created 'lessonHider.html'. Now all we need to do is add the directive to our 'index.html' to see if it works. Remember that directives are converted to snake-case in html!
+Starting out looking pretty familiar right? So let's test it and make sure it works! Start out by creating a new file named `lessonHider.html` and adding some text. Once you have that done we can add a property called ```templateUrl: ``` to our directive's return object. Point the templateUrl to your newly created `lessonHider.html`. Now all we need to do is add the directive to our `index.html` to see if it works. Remember that directives are converted to snake-case in html!
 ​
-If you are not seeing the text in your 'lessonHider.html' it is time to double check your steps. Did you remember to add your 'lessonHider.js' to your 'index.html'? Did you convert your directive to snake-case? Is the file path in your templateUrl property correct?
+If you are not seeing the text in your `lessonHider.html` it is time to double check your steps. Did you remember to add your `lessonHider.js` to your `index.html`? Did you convert your directive to snake-case? Is the file path in your templateUrl property correct?
 ​
 Your directive in your html should look like this:
 ```html
@@ -39,7 +39,7 @@ A directive that has `restrict: 'E'` (note that 'E' is a string) can only be use
 Think through Angular's built in directives such as ng-repeat or ng-options. These are used with the `'A'` restriction because they are passed as attributes to existing elements. Directives as classes are less commonly seen and should not be used as they are being phased out of angular. So for now, let us just restrict our lessonHider directive to only be an Element.
 ​
 ## Step 3: Adding functionality
-So far our directive is displaying some text, but it isn't doing much else, so lets bring it up a level! Inside your lessonCtrl let's add an array of lessons to your $scope. Give the lessons array these values:
+So far our directive is displaying some text, but it isn't doing much else, so lets bring it up a level! Inside your `lessonCtrl` let's add an array of lessons to your `$scope`. Give the lessons array these values:
 ​
 ```javascript
 ['Services', 'Routing', 'Directives', 'Review', 'Firebase', 'No server project', 'Node', 'Express', 'Mongo'];
@@ -47,7 +47,7 @@ So far our directive is displaying some text, but it isn't doing much else, so l
 ​
 Now inside of our directive's template we can display the array of lessons the same way we would in any of our other html. So lets add the lessons array to the template and reload the page to make sure it prints out what we want it to.
 ​
-Cool! But still not much that is new, so lets dive a little deeper. Inside of your 'lessonHider.js' add another property to your return object called 'link' and give it the value of a function. The link method will always be passed three parameters: 'scope', 'element', and 'attributes', in that order. At this point your directive should look like this:
+Cool! But still not much that is new, so lets dive a little deeper. Inside of your `lessonHider.js` add another property to your return object called `link` and give it the value of a function. The link method will always be passed three parameters: `scope`, `element`, and `attributes`, in that order. At this point your directive should look like this:
 ​
 ```javascript
 angular.module('directivePractice')
@@ -67,9 +67,9 @@ Unlike dependency injection used elsewhere in Angular these parameter names don'
 ​
 Remember that data is passed to directives through attributes on the element. So in our html lets add an attribute named `my-test` and give it a value of `Hello there!`. Just like this : `<lesson-hider my-test="Hello there!"></lesson-hider>`
 ​
-Now inside of your link method lets console log the three parameters (scope, element, attributes) check out the console to see what we're getting. The scope will log out an object containing angular properties, the element will log out the actual DOM element itself, and you will be able to see that the attributes logs out your myTest attribute and value. You can also see that Angular has done it's magic in converting the snake-case in your html to camelCase.
+Now inside of your link method lets console log the three parameters (`scope`, `element`, `attributes`) check out the console to see what we're getting. The scope will log out an object containing angular properties, the element will log out the actual DOM element itself, and you will be able to see that the attributes logs out your `myTest` attribute and value. You can also see that Angular has done it's magic in converting the snake-case in your html to camelCase.
 ​
-Once you're done browsing through the results of your console log feel free to remove the console log and my-test attribute before we move on to the next step, we wont be using them anymore.
+Once you're done browsing through the results of your console log feel free to remove the console log and `my-test` attribute before we move on to the next step. We wont be using them anymore.
 ​
 ​
 ## Step 4: Isolating scope.
