@@ -1,7 +1,11 @@
 <img src="https://devmounta.in/img/logowhiteblue.png" width="250" align="right">
 
-# lesson-hider-directive
-​
+lesson-hider-directive
+======================
+
+##Objective
+Create a simple directive that modifies a template
+
 Today we will be building a custom directive that checks whether a lesson is already in the provided schedule and striking through that lesson if it is in the schedule. We will cover the fundamentals of directives and demonstrate a real-world use case that will allow you to better understand the power of directives.
 ​
 ## Step 1: Initializing the file structure.
@@ -10,13 +14,12 @@ All that is provided is the schedule.json and app.js, so lets start by laying ou
 - 'lessonCtrl.js', 
 - 'lessonService.js'
 - 'lessonHider.js'. 
-​
 
 So lets start out by creating those files and setting up the necessary basics such as initializing the app and controller.
-​
+
 ## Step 2: Starting your directive.
 Let's continue by creating your directive. You will use the directive method on your angular module (just like you do when creating controllers and services). This method takes two parameters, a string that will be the name of your directive, and a callback function which will return an object. It should look something like this:
-​
+
 ```javascript
 angular.module('directivePractice')
 .directive('lessonHider', function() {
@@ -25,32 +28,32 @@ angular.module('directivePractice')
 	}
 });
 ```
-​
+
 Starting out looking pretty familiar right? So let's test it and make sure it works! Start out by creating a new file named 'lessonHider.html' and adding some text. Once you have that done we can add a property called ```templateUrl: ``` to our directive's return object. Point the templateUrl to your newly created 'lessonHider.html'. Now all we need to do is add the directive to our 'index.html' to see if it works. Remember that directives are converted to snake-case in html!
-​
+
 If you are not seeing the text in your 'lessonHider.html' it is time to double check your steps. Did you remember to add your 'lessonHider.js' to your 'index.html'? Did you convert your directive to snake-case? Is the file path in your templateUrl property correct?
-​
+
 Your directive in your html should look like this:
 ```html
 <lesson-hider></lesson-hider>
 ```
 It can be helpful to think of a directive as a self contained route, wherever you place that directive it will display the html template you have given it. Before moving on to adding functionality, lets add the `restrict` property to our directive's return object. Restrict determines how you can use the directive in your DOM and there are three options: `'E'`, `'A'`, and `'C'`. These stand for Element, Attribute, and Class. 
-​
+
 A directive that has `restrict: 'E'` (note that 'E' is a string) can only be used in your html as an element, like we have above. 
-​
+
 Think through Angular's built in directives such as ng-repeat or ng-options. These are used with the `'A'` restriction because they are passed as attributes to existing elements. Directives as classes are less commonly seen and should not be used as they are being phased out of angular. So for now, let us just restrict our lessonHider directive to only be an Element.
-​
+
 ## Step 3: Adding functionality
 So far our directive is displaying some text, but it isn't doing much else, so lets bring it up a level! Inside your lessonCtrl let's add an array of lessons to your $scope. Give the lessons array these values:
-​
+
 ```javascript
 ['Services', 'Routing', 'Directives', 'Review', 'Firebase', 'No server project', 'Node', 'Express', 'Mongo'];
 ```
-​
+
 Now inside of our directive's template we can display the array of lessons the same way we would in any of our other html. So lets add the lessons array to the template and reload the page to make sure it prints out what we want it to.
-​
+
 Cool! But still not much that is new, so lets dive a little deeper. Inside of your 'lessonHider.js' add another property to your return object called 'link' and give it the value of a function. The link method will always be passed three parameters: 'scope', 'element', and 'attributes', in that order. At this point your directive should look like this:
-​
+
 ```javascript
 angular.module('directivePractice')
 .directive('lessonHider', function() {
@@ -66,19 +69,18 @@ angular.module('directivePractice')
 });
 ```
 Unlike dependency injection used elsewhere in Angular these parameter names don't carry specific meaning. The first parameter represents the `$scope` of your directive, the second is the html element that wraps your directive, and the third is an object containing all the properties and values of the attributes on your directive in the DOM.
-​
+
 Remember that data is passed to directives through attributes on the element. So in our html lets add an attribute named `my-test` and give it a value of `Hello there!`. Just like this : `<lesson-hider my-test="Hello there!"></lesson-hider>`
-​
+
 Now inside of your link method lets console log the three parameters (scope, element, attributes) check out the console to see what we're getting. The scope will log out an object containing angular properties, the element will log out the actual DOM element itself, and you will be able to see that the attributes logs out your myTest attribute and value. You can also see that Angular has done it's magic in converting the snake-case in your html to camelCase.
-​
+
 Once you're done browsing through the results of your console log feel free to remove the console log and my-test attribute before we move on to the next step, we wont be using them anymore.
-​
-​
+
 ## Step 4: Isolating scope.
 Ideally, directives can be re-used in multiple places throughout a project, one of the greatest benefits of a well written directive is its pluggability. Like a function, you can use the same directive in several different areas for slightly different values. Unfortunately this can lead to issues as you might want to use differently named data in different areas of your project. So saying `{{ lessons }}` might work fine on the current controller, but what if we wanted to use it elsewhere where we didn't have a lessons array?
-​
+
 Angular's work around to this problem lies in something called Isolate Scope, Isolate Scope cuts the directive off from the parent controller (lessonCtrl in this case) and only allows the directive to use data we explicitly pass to it. To isolate scope, all we need to do is add a `scope:` property to our directive's return object and give that `scope:` property the value of an object. Here is what the directive should look like after adding `scope:`:
-​
+
 ```javascript
 angular.module('directivePractice')
 .directive('lessonHider', function() {
