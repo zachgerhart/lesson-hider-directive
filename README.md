@@ -1,3 +1,5 @@
+<img src="https://devmounta.in/img/logowhiteblue.png" width="250" align="right">
+
 # lesson-hider-directive
 ​
 Today we will be building a custom directive that checks whether a lesson is already in the provided schedule and striking through that lesson if it is in the schedule. We will cover the fundamentals of directives and demonstrate a real-world use case that will allow you to better understand the power of directives.
@@ -239,3 +241,12 @@ Congratulations! You have written a new custom directive that utilizes the restr
 	3. Allow users to remove a lesson from the schedule and have your directive update when a lesson is removed from the schedule.
 ​
 Directives are an incredibly intricate and powerful piece of AngularJS, so keep practicing and searching out new use-cases for them. Once again, congratulations on your first fully fledged custom directive!
+
+## Contributions
+If you see a problem or a typo, please fork, make the necessary changes, and create a pull request so we can review your changes and merge them into the master repo and branch.
+
+## Copyright
+
+© DevMountain LLC, 2015. Unauthorized use and/or duplication of this material without express and written permission from DevMountain, LLC is strictly prohibited. Excerpts and links may be used, provided that full and clear credit is given to DevMountain with appropriate and specific direction to the original content.
+
+<img src="https://devmounta.in/img/logowhiteblue.png" width="250">
