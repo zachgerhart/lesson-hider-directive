@@ -307,9 +307,9 @@ the arguments we would like to pass to the function. In this case we want to pas
 Congratulations! You have written a new custom directive that utilizes the restrictions, a templateUrl, isolate scope, a controller, and a link function!
 Directives can be a lot to wrap your head around, so here are a few options to familiarize yourself further:
 
-1: Try to fix out `dayAlert()`, which currently alerts `'Lesson is active on undefined'` if we select a lesson that's not in the schedule.
-1: Add a checkbox to toggle whether lessons in the schedule are crossed out or not.
-1: Allow users to remove lessons from the schedule; have your directive update when a lesson is removed.
+1. Try to fix out `dayAlert()`, which currently alerts `'Lesson is active on undefined'` if we select a lesson that's not in the schedule.
+1. Add a checkbox to toggle whether lessons in the schedule are crossed out or not.
+1. Allow users to remove lessons from the schedule; have your directive update when a lesson is removed.
 
 Directives are an incredibly intricate and powerful piece of AngularJS, so keep practicing and searching out new use-cases for them. Once again, congratulations
 on your first fully-fledged custom directive!
