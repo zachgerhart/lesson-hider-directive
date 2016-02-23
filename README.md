@@ -11,7 +11,7 @@ cover the fundamentals of directives and demonstrate a real-world use case that 
 
 ## Step 1: Initializing the file structure
 
-All that is provided is the schedule.json and app.js, so lets start by laying out the skeleton of our app. We will need:
+All that is provided is the schedule.json and app.js, so let's start by laying out the skeleton of our app. We will need:
 
 * 'index.html'
 * 'lessonCtrl.js'
@@ -304,7 +304,7 @@ Now that we have access to our new function inside of our directive we need to c
 day on our scope. So inside our link function's `if` statement we will create a new property called `scope.lessonDay` and set it equal to the day in the
 schedule's `weekday` property. With this reference we are ready to make `dayAlert` available to our users.
 
-Inside our directive's template, lets add a button element and give that element an ng-click attribute with the value of `ng-click="dayAlert({ lesson: lesson,
+Inside our directive's template, let's add a button element and give that element an ng-click attribute with the value of `ng-click="dayAlert({ lesson: lesson,
 day: lessonDay })"`. This syntax is a little strange, but it is just a quirk of directives.
 
 We pass the function call a single object with key names that match the parameter names we gave `day-alert` in our html and then give those keys the values of
