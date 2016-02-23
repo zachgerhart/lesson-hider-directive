@@ -3,12 +3,14 @@
 # lesson-hider-directive
 
 ## Objective
+
 Create a simple directive that modifies a template
 
 Today we will be building a custom directive that checks whether a lesson is already in the provided schedule, and strikes through that lesson if it is. We will
 cover the fundamentals of directives and demonstrate a real-world use case that will allow you to better understand the power of directives.
 
-## Step 1: Initializing the file structure.
+## Step 1: Initializing the file structure
+
 All that is provided is the schedule.json and app.js, so lets start by laying out the skeleton of our app. We will need:
 
 * 'index.html'
@@ -18,7 +20,8 @@ All that is provided is the schedule.json and app.js, so lets start by laying ou
 
 Let's start out by creating those files and setting up the necessary basics such as initializing the app and controller.
 
-## Step 2: Starting your directive.
+## Step 2: Starting your directive
+
 Let's continue by creating your directive. You will use the directive method on your angular module (just like you do when creating controllers and services).
 This method takes two parameters: a string that will be the name of your directive, and a callback function which will return an object. It should look
 something like this:
@@ -53,6 +56,7 @@ existing elements. Directives as classes (and especialaly as comments) are less 
 lessonHider directive to only be an Element.
 
 ## Step 3: Adding functionality
+
 So far our directive is displaying some text, but it isn't doing much else, so let's bring it up a level! Inside your `lessonCtrl` let's add an array of lessons
 to your `$scope`. Give the lessons array these values:
 
@@ -96,7 +100,8 @@ logs out your myTest attribute and value. You can also see that Angular has done
 Once you're done browsing through the results of your `console.log()` feel free to remove it and the my-test attribute before we move on to the next step. We
 wont be using them anymore.
 
-## Step 4: Isolating scope.
+## Step 4: Isolating scope
+
 Ideally, directives can be re-used in multiple places throughout a project. One of the greatest benefits of a well written directive is its pluggability. Like a
 function, you can use the same directive in several different areas for slightly different values. Unfortunately this can lead to issues as you might want to
 use differently named data in different areas of your project. So saying `{{ lessons }}` might work fine on the current controller, but what if we wanted to use
@@ -161,6 +166,7 @@ There is only one more step to demonstrate what I mean by two-way data binding. 
 `lesson`. Now by typing in the input box you can see that the changes you make affect both `$scope.test` AND `lesson`!
 
 ## Step 5: Adding even more functionality!
+
 So now we know how to set up the basic layout of a directive, give it a template, isolate the scope, and pass it data! Pretty impressive, but we aren't done
 yet. Our directive still doesn't really DO much. So let's fix that now.
 
@@ -196,7 +202,8 @@ Because we've injected `lessonService` into our directive's controller we can no
 Let's assign the return value of `lessonService.getSchedule()` to a new value called `$scope.getSchedule`. You may have noticed that we still haven't called a
 `.then` yet--we're almost there!
 
-## Step 6: Utilizing the link function.
+## Step 6: Utilizing the link function
+
 If you've forgotten along the way what our directive is going to be doing, here's a reminder: We are going to check whether a lesson is already in the schedule,
 and if it is, we will cross it out.
 
@@ -242,7 +249,8 @@ preventing your loop from continuing to run after you've found the lesson.
 
 Our directive now has functionality and is an example of a real world use case! But there's still more we can do!
 
-## Step 7: Passing a function to our directive.
+## Step 7: Passing a function to our directive
+
 What if the user wants to know on which day a lesson would be active? Right now all they know is that some lessons are active somewhere in the schedule. Let's
 fix this!
 
@@ -303,7 +311,8 @@ We pass the function call a single object with key names that match the paramete
 the arguments we would like to pass to the function. In this case we want to pass our `scope.lesson` property as the first argument to `lesson` and our
 `scope.lessonDay` property as the second argument that will be passed to `day`.
 
-## Step 8: Next steps.
+## Step 8: Next steps
+
 Congratulations! You have written a new custom directive that utilizes the restrictions, a templateUrl, isolate scope, a controller, and a link function!
 Directives can be a lot to wrap your head around, so here are a few options to familiarize yourself further:
 
@@ -315,10 +324,12 @@ Directives are an incredibly intricate and powerful piece of AngularJS, so keep 
 on your first fully-fledged custom directive!
 
 ## Contributions
+
 If you see a problem or a typo, please fork, make the necessary changes, and create a pull request so we can review your changes and merge them into the master
 repo and branch.
 
 ## Copyright
+
 © DevMountain LLC, 2015. Unauthorized use and/or duplication of this material without express and written permission from DevMountain, LLC is strictly
 prohibited. Excerpts and links may be used, provided that full and clear credit is given to DevMountain with appropriate and specific direction to the original
 content.
