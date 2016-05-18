@@ -9,6 +9,8 @@ Create a simple directive that modifies a template
 Today we will be building a custom directive that checks whether a lesson is already in the provided schedule, and strikes through that lesson if it is. We will
 cover the fundamentals of directives and demonstrate a real-world use case that will allow you to better understand the power of directives.
 
+![alt text](https://github.com/DevMountain/lesson-hider-directive/blob/master/preview.png?raw=true, "Example of the directive in use.")
+
 ## Step 1: Initializing the file structure
 
 All that is provided is the schedule.json and app.js, so let's start by laying out the skeleton of our app. We will need:
