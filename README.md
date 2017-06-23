@@ -243,9 +243,7 @@ used when you need to manipulate the DOM, and it will feel a lot like jQuery (be
 we're going back to some basics.
 
 First of all we will need to loop through our schedule array and check whether `scope.lesson` matches a lesson that is already scheduled. If we find the value
-then we need to do some basic jQuery to strike through that list item. It's also a good idea to tell your function to also `return;` if it finds the value,
-preventing your loop from continuing to run after you've found the lesson.
-
+then we need to do some basic jQuery to strike through that list item.
 Our directive now has functionality and is an example of a real world use case! But there's still more we can do!
 
 Before adding more functionality, let's make sure we're up to speed. Here is what your directive should look like now:
